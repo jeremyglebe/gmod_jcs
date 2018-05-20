@@ -11,9 +11,11 @@ function GameSecUpd()
 		PrintMessage(HUD_PRINTTALK, GetGameTime())
 		SetGameTime(GetGameTime() - 1)
 	else
-		--PLACEHOLDER TEST FROM FFA2--
-		PrintMessage(HUD_PRINTCENTER, "Game Over! Map Vote in 15 seconds!")
-		--PLACEHOLDER TEST FROM FFA2--
+		PrintMessage(HUD_PRINTCENTER, "Game over, (Temp) wins!")
+		--Freeze code was copied from internet :/
+		for _, ply in ipairs( player.GetAll() ) do
+			ply:Freeze( true )
+		end
 	end
 	
 end

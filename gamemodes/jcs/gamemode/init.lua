@@ -22,3 +22,15 @@ end
 function GM:PlayerAuthed( ply, steamID, uniqueID )
 	print("Authenticated: " .. ply:Nick())
 end
+
+--This occurs when the game starts up and AFTER entities can be spawned
+hook.Add( "InitPostEntity", "some_unique_name", function()
+	print( "Initialization hook called" )
+	--SPAWN THE GAME LOGIC ENT--
+	local logic = ents.Create("jcs_logic")
+	logic:Spawn()
+	--SPAWN THE GAME LOGIC ENT--
+	--Initialize the game timer--
+	SetGameTime(GAME_LENGTH)
+	--Initialize the game timer--
+end )

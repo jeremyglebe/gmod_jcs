@@ -7,18 +7,26 @@ local PLAYER = {}
 --
 PLAYER.WalkSpeed 			= 200
 PLAYER.RunSpeed				= 400
-PLAYER.JumpPower			= 100
+PLAYER.JumpPower			= 200
 PLAYER.TeammateNoCollide 	= false
-PLAYER.StartArmor			= 100
 PLAYER.StartHealth			= 100
+PLAYER.StartArmor			= 0
 
 function PLAYER:Loadout()
 
 	self.Player:Give( "weapon_crowbar" )
 	self.Player:Give( "weapon_pistol" )
+	self.Player:Give( "weapon_357" )
+	self.Player:Give( "weapon_crossbow" )
+	self.Player:Give( "weapon_smg1" )
+	self.Player:Give( "weapon_shotgun" )
 	
 	self.Player:RemoveAllAmmo()
-	self.Player:GiveAmmo( 512, "Pistol", true )
+	self.Player:GiveAmmo( 360, "Pistol", true )
+	self.Player:GiveAmmo( 80, "357", true )
+	self.Player:GiveAmmo( 5, "XBowBolt", true )
+	self.Player:GiveAmmo( 150, "SMG1", true )
+	self.Player:GiveAmmo( 120, "Buckshot", true )
 
 end
 
