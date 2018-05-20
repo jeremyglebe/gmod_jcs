@@ -2,10 +2,14 @@
 --Make sure they have them!
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
+AddCSLuaFile( "timers.lua" )
 
 --Load these files (executes them)
 include( "shared.lua" )
+--Player Class--
 include( "player_class/fighter.lua" )
+--Game Timers & Round Control--
+include( "timers.lua" )
 
 --When players join
 function GM:PlayerConnect( name, ip )
@@ -13,7 +17,6 @@ function GM:PlayerConnect( name, ip )
 end
 function GM:PlayerInitialSpawn( ply )
 	print(ply:Nick() .. "spawned in!")
-	
 	player_manager.SetPlayerClass( ply, "player_fighter" )
 end
 function GM:PlayerAuthed( ply, steamID, uniqueID )
