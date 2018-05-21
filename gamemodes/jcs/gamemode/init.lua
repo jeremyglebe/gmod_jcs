@@ -4,13 +4,6 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "timers.lua" )
 
---Load these files (executes them)
-include( "shared.lua" )
---Player Class--
-include( "player_class/fighter.lua" )
---Game Timers & Round Control--
-include( "timers.lua" )
-
 --When players join
 function GM:PlayerConnect( name, ip )
 	print("Player \"" .. name .. "\" has joined the game.")
@@ -18,6 +11,9 @@ end
 function GM:PlayerInitialSpawn( ply )
 	print(ply:Nick() .. "spawned in!")
 	player_manager.SetPlayerClass( ply, "player_fighter" )
+	--SETTING UP PLAYER LOADOUT--
+	ply.itemlist = {}
+	--SETTING UP PLAYER LOADOUT--
 end
 function GM:PlayerAuthed( ply, steamID, uniqueID )
 	print("Authenticated: " .. ply:Nick())
@@ -34,3 +30,12 @@ hook.Add( "InitPostEntity", "some_unique_name", function()
 	SetGameTime(GAME_LENGTH)
 	--Initialize the game timer--
 end )
+
+--Load these files (executes them)
+include( "shared.lua" )
+--Player Class--
+include( "player_class/fighter.lua" )
+--Loadouts, commands & setup--
+include( "item_loadouts.lua" )
+--Game Timers & Round Control--
+include( "timers.lua" )

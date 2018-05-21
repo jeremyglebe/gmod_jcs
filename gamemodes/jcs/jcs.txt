@@ -10,21 +10,11 @@
 	{
 		1
 		{
-			"name"		"sk_maxfrags"
-			"text"		"Max Frags"
-			"help"		"The maxiumum number of frags before a map change"
+			"name"		"jcs_gametime"
+			"text"		"Game Time"
+			"help"		"Total time (in seconds) before the round is over."
 			"type"		"Numeric"
-			"default"	"20"
-		}
-
-
-		2
-		{
-			"name"		"sk_grenades"
-			"text"		"Allow Grenades"
-			"help"		"If enabled then grenades are enabled"
-			"type"		"CheckBox"
-			"default"	"1"
+			"default"	"600"
 		}
 
 	}

@@ -5,7 +5,7 @@ GM.Website = "N/A"
 
 ----LOADING CVARS INTO GLOBALS----
 --Game time in seconds--
-GAME_LENGTH = 600
+GAME_LENGTH = GetConVarNumber( "jcs_gametime" )
 ----LOADING CVARS INTO GLOBALS----
 
 --This occurs when the game initializes
