@@ -12,7 +12,7 @@ function GM:PlayerInitialSpawn( ply )
 	print(ply:Nick() .. "spawned in!")
 	player_manager.SetPlayerClass( ply, "player_fighter" )
 	--SETTING UP PLAYER LOADOUT--
-	ply.itemlist = {}
+	ply.itemlist = { [1] = "weapon_ar2", [2] = "weapon_pistol" }
 	--SETTING UP PLAYER LOADOUT--
 end
 function GM:PlayerAuthed( ply, steamID, uniqueID )
