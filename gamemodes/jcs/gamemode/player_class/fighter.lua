@@ -5,6 +5,7 @@ local PLAYER = {}
 --
 -- See gamemodes/base/player_class/player_default.lua for all overridable variables
 --
+PLAYER.UseVMHands			= true
 --Default Walk Speed is 200
 PLAYER.WalkSpeed 			= 200
 --Default Run Speed is 400
@@ -29,17 +30,9 @@ function PLAYER:Loadout()
 
 	--This is given to all players regardless of loadout
 	self.Player:RemoveAllAmmo()
-	--Primary Ammo--
-	self.Player:GiveAmmo( 7, "XBowBolt", true ) --7 Reloads
-	self.Player:GiveAmmo( 180, "SMG1", true ) --4 Reloads
-	self.Player:GiveAmmo( 1, "SMG1_Grenade", true ) --1 Shot
-	self.Player:GiveAmmo( 120, "Buckshot", true ) --5 Reloads
-	self.Player:GiveAmmo( 60, "AR2", true ) --2 Reloads
-	self.Player:GiveAmmo( 1, "AR2AltFire", true ) --1 Shot
-	self.Player:GiveAmmo( 3, "RPG_Round", true ) --3 Shots
-	--Secondary Ammo--
-	self.Player:GiveAmmo( 360, "Pistol", true ) --20 Reloads
-	self.Player:GiveAmmo( 120, "357", true ) --20 Reloads
+	for k,v in pairs(ammo_spawn_list) do
+		self.Player:GiveAmmo(v, k, true)	
+	end
 
 end
 

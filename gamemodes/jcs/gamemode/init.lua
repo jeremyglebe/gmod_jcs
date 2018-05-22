@@ -3,6 +3,8 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "timers.lua" )
+AddCSLuaFile( "cl_loadout.lua" )
+AddCSLuaFile( "loadout_lists.lua" )
 
 --When players join
 function GM:PlayerConnect( name, ip )
@@ -36,6 +38,6 @@ include( "shared.lua" )
 --Player Class--
 include( "player_class/fighter.lua" )
 --Loadouts, commands & setup--
-include( "item_loadouts.lua" )
+include( "loadout.lua" )
 --Game Timers & Round Control--
 include( "timers.lua" )

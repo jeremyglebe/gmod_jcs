@@ -3,6 +3,9 @@ GM.Author = "whitejay2010"
 GM.Email = "N/A"
 GM.Website = "N/A"
 
+--So that Client and Server know what weapons are valid
+include( "loadout_lists.lua" )
+
 ----LOADING CVARS INTO GLOBALS----
 --Game time in seconds--
 GAME_LENGTH = GetConVarNumber( "jcs_gametime" )
