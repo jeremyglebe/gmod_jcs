@@ -15,6 +15,7 @@ sec_list = {
 
 --LIST OF SPECIAL WEAPONS--
 spe_list = {
+	["item_battery"]	= "Armor",
 	["weapon_frag"]		= "Frag Grenade",
 	["m9k_nerve_gas"]	= "Nerve Gas",
 	["weapon_crowbar"]	= "High Tech Lever-Action Melee Device",
@@ -61,6 +62,7 @@ manual_models = {
 	["weapon_crossbow"]	= "models/weapons/v_crossbow.mdl",
 	["weapon_crowbar"]	= "models/weapons/v_crowbar.mdl",
 	["weapon_frag"]		= "models/weapons/v_grenade.mdl",
+	["item_battery"]		= "models/weapons/v_grenade.mdl",
 	["weapon_pistol"]	= "models/weapons/v_pistol.mdl",
 	["weapon_rpg"]		= "models/weapons/v_rpg.mdl"
 }
