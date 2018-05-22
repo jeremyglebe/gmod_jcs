@@ -14,6 +14,11 @@ function jcs_set_items( ply, cmd, args )
 			ply.itemlist[2] = args[2]
 		end
 	
+		--If the third argument is there, and a special weapon--
+		if args[3] and spe_list[args[3]] then
+			ply.itemlist[3] = args[3]
+		end
+	
 		--This loop adds all arguments to loadout--
 		--for k,v in pairs(args) do
 		--	ply.itemlist[k] = v

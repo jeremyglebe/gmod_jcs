@@ -4,7 +4,7 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "timers.lua" )
 AddCSLuaFile( "cl_loadout.lua" )
-AddCSLuaFile( "loadout_lists.lua" )
+AddCSLuaFile( "lists.lua" )
 
 --When players join
 function GM:PlayerConnect( name, ip )

@@ -2,6 +2,7 @@ function jcs_items()
 
 	local primary = ""
 	local secondary = ""
+	local special = ""
 
 	--Draw the initial frame for the menu
 	local Frame = vgui.Create( "DFrame" )
@@ -30,14 +31,17 @@ function jcs_items()
 	PrimaryMenu:SetPos( (600/1920) * ScrW(), (250/1080) * ScrH() )
 	--Add all primaries
 	for k,v in pairs(pri_list) do
-		PrimaryMenu:AddChoice( k )
+		PrimaryMenu:AddChoice( v )
 	end
 	PrimaryMenu.OnSelect = function( panel, index, value )
-		primary = value
+		primary = lookup[value]
 		--If we can access the weapons table, show its model & Print Name--
-		if weapons.Get(value) then
-			prim_model:SetModel( weapons.Get(value).WorldModel )
-			prim_label:SetText( weapons.Get(value).PrintName )
+		if weapons.Get(primary) then
+			prim_model:SetModel( weapons.Get(primary).WorldModel )
+		else --Otherwise, try checking the manual tables
+			if manual_models[primary] then
+				prim_model:SetModel( manual_models[primary] )
+			end
 		end
 	end 
 	
@@ -56,17 +60,48 @@ function jcs_items()
 	SecondaryMenu:SetPos( (825/1920) * ScrW(), (250/1080) * ScrH() )
 	--Add all secondaries
 	for k,v in pairs(sec_list) do
-		SecondaryMenu:AddChoice( k )
+		SecondaryMenu:AddChoice( v )
 	end
 	SecondaryMenu.OnSelect = function( panel, index, value )
-		secondary = value
+		secondary = lookup[value]
 		--If we can access the weapons table, show its model & Print Name--
-		if weapons.Get(value) then
-			sec_model:SetModel( weapons.Get(value).WorldModel )
-			sec_label:SetText( weapons.Get(value).PrintName )
+		if weapons.Get(secondary) then
+			sec_model:SetModel( weapons.Get(secondary).WorldModel )
+		else --Otherwise, try checking the manual tables
+			if manual_models[secondary] then
+				sec_model:SetModel( manual_models[secondary] )
+			end
 		end
 	end 
 
+	--Special gun model display--
+	local spe_model = vgui.Create( "DModelPanel", Frame )
+	spe_model:SetSize( (200/1920) * ScrW(), (200/1080) * ScrH() )
+	spe_model:SetPos( (825/1920) * ScrW(), (300/1080) * ScrH() )
+	--Special gun name label--
+	local spe_label = vgui.Create( "DLabel", Frame )
+	spe_label:SetPos( (825/1920) * ScrW(), (500/1080) * ScrH() )
+	spe_label:SetSize( (200/1920) * ScrW(), (25/1080) * ScrH() )
+	spe_label:SetText( "Special Weapon" )
+	--Special gun selection menu--
+	local SpecialMenu = vgui.Create( "DComboBox", Frame )
+	SpecialMenu:SetSize( (200/1920) * ScrW(), (20/1080) * ScrH() )
+	SpecialMenu:SetPos( (825/1920) * ScrW(), (525/1080) * ScrH() )
+	--Add all secondaries
+	for k,v in pairs(spe_list) do
+		SpecialMenu:AddChoice( v )
+	end
+	SpecialMenu.OnSelect = function( panel, index, value )
+		special = lookup[value]
+		--If we can access the weapons table, show its model--
+		if weapons.Get(special) then
+			spe_model:SetModel( weapons.Get(special).WorldModel )
+		else --Otherwise, try checking the manual tables
+			if manual_models[special] then
+				spe_model:SetModel( manual_models[special] )
+			end
+		end
+	end 
 	
 	--Submit Button--
 	local Button = vgui.Create( "DButton", Frame )
@@ -78,7 +113,7 @@ function jcs_items()
 		draw.RoundedBox( 0, 0, 0, w, h, Color( 200, 120, 255, 200 ) )
 	end
 	Button.DoClick = function()
-		RunConsoleCommand( "jcs_set_items", primary, secondary )
+		RunConsoleCommand( "jcs_set_items", primary, secondary, special )
 		Frame:Close()
 	end
 end
