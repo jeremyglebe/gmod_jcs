@@ -1,2 +1,2 @@
 # Jay Combat Simulator
-Jay Combat Simulator: Gamemode addon for Garry's Mod
+Battle gamemode for Garry's Mod
