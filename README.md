@@ -1,2 +1,2 @@
-# jcs
-Jay Combat Simulator: Addon for Garry's Mod
+# Jay Combat Simulator
+Jay Combat Simulator: Gamemode addon for Garry's Mod
