@@ -14,7 +14,7 @@ PLAYER.RunSpeed				= 400
 PLAYER.JumpPower			= 300
 PLAYER.TeammateNoCollide 	= false
 PLAYER.StartHealth			= 50
-PLAYER.StartArmor			= 0
+PLAYER.StartArmor			= 30
 
 function PLAYER:Loadout()
 
