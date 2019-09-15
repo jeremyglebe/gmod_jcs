@@ -71,7 +71,10 @@ ammo_spawn_list = {
     ["Smoke Grenades"] = 0 --0 xtra Smoke Grenades
 }
 
---List of Manually Added Models--
+--List of Manually Added Models
+--These models are displayed on the client's weapon selection menu.
+--Some weapons are configured strangely and need their models path to be
+--manually added.
 manual_models = {
     ["weapon_357"] = "models/weapons/v_357.mdl",
     ["weapon_shotgun"] = "models/weapons/v_shotgun.mdl",

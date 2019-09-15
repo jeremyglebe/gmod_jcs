@@ -26,7 +26,7 @@ function PLAYER:Loadout()
     end
 
     --This is given to all players regardless of loadout
-    self.Player:Give("m9k_fists")
+    --self.Player:Give("m9k_fists")
     self.Player:RemoveAllAmmo()
 
     for k, v in pairs(ammo_spawn_list) do
