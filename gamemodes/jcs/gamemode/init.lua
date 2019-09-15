@@ -1,49 +1,105 @@
+--[[
+    init.lua
+
+    Desc: This file handles the initialization of the gamemode for the server.
+    It sends files to the client and includes files the server will need to
+    function. Some server functionality is found in shared.lua because it is
+    also needed by the client.
+
+    [Files Included] The files included for use in this file are listed below
+    as either "depended upon" (needed for functions in this file) or "provided"
+    (adds simply executed from this file.) Note: Both sets are still, in fact,
+    provided by this file when this files is imported elsewhere. This naming
+    is only for organizational purposes.
+    Files Depended Upon:
+        (include these files at the top or in a previous file)
+        shared.lua
+            GAME_LENGTH
+        logic_control.lua
+            SetGameTime()
+            GetGameTime()
+    Files Provided:
+        (include these files at the bottom)
+        player_class/fighter.lua
+        loadout.lua
+        timers.lua
+--]]
 --Send these files to the clients
 --Make sure they have them!
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
-AddCSLuaFile("timers.lua")
-AddCSLuaFile("cl_loadout.lua")
 AddCSLuaFile("lists.lua")
+AddCSLuaFile("logic_control.lua")
+AddCSLuaFile("cl_loadout.lua")
+--shared.lua has many purposes but notably creates global vars representing the
+--convar server settings.
+--shared.lua provides: lists.lua, logic_control.lua
+include("shared.lua")
 
---When players join
+--[[PlayerConnect (Override)
+    Hook: Function executes when a player joins the game
+    Desc: Handles player joins and announces their presence to the server.
+    Params:
+        (name) string, name of the player
+        (ip) string, ip of the connection
+    Returns: None
+--]]
 function GM:PlayerConnect(name, ip)
+    --announce that the player has joined
     print("Player \"" .. name .. "\" has joined the game.")
 end
 
+--[[PlayerInitialSpawn (Override)
+    Hook: Function executes when a player spawns for the first time
+    Desc: Handles first player spawn. Gives the player class and weapons.
+    Params:
+        (ply) Player, the player object which is spawning in
+    Returns: None
+--]]
 function GM:PlayerInitialSpawn(ply)
     print(ply:Nick() .. "spawned in!")
     player_manager.SetPlayerClass(ply, "player_fighter")
 
-    --SETTING UP PLAYER LOADOUT--
+    --give the player a starting loadout
     ply.itemlist = {
         [1] = "weapon_ar2",
         [2] = "weapon_pistol"
     }
-    --SETTING UP PLAYER LOADOUT--
 end
 
+--[[PlayerAuthed (Override)
+    Hook: Function executes when a player is authenticated
+    Desc: prints the name of the authenticated player
+    Params:
+        (ply) Player, the player object of the authenticated player
+        (steamID) string, steam id of the player
+        (uniqueID) string, unqiue id for the player
+    Returns: None
+--]]
 function GM:PlayerAuthed(ply, steamID, uniqueID)
     print("Authenticated: " .. ply:Nick())
 end
 
---This occurs when the game starts up and AFTER entities can be spawned
-hook.Add("InitPostEntity", "some_unique_name", function()
+--[[InitLogicEnt
+    Hook: InitPostEntity, executes at start, after entities can be spawned
+    Desc: Creates and initializes the game logic entity
+    Params: None
+    Returns: None
+--]]
+function InitLogicEnt()
     print("Initialization hook called")
-    --SPAWN THE GAME LOGIC ENT--
+    --Spawn game logic entity
     local logic = ents.Create("jcs_logic")
     logic:Spawn()
-    --SPAWN THE GAME LOGIC ENT--
-    --Initialize the game timer--
+    --Initialize the game timer
     SetGameTime(GAME_LENGTH)
-end)
+end
 
---Initialize the game timer--
---Load these files (executes them)
-include("shared.lua")
---Player Class--
+--add a hook for the creation of the logic entity
+hook.Add("InitPostEntity", "Hook_InitLogicEnt", InitLogicEnt)
+--defines the player class
 include("player_class/fighter.lua")
---Loadouts, commands & setup--
+--loadout functions and commands
 include("loadout.lua")
---Game Timers & Round Control--
+--initializes game timer and handles round control
 include("timers.lua")
