@@ -1,75 +1,166 @@
 --LIST OF PRIMARY WEAPONS--
 pri_list = {
-    ["cw_ak74"] = "AK-74",
-    ["cw_ar15"] = "AR15",
-    ["cw_g4p_fn_fal"] = "FN FAL",
-    ["cw_g4p_awm"] = "Arctic Warfare Magnum",
-    ["cw_l115"] = "L115 Sniper",
-    ["cw_m14"] = "M14",
-    --["cw_mp5"]			= "MP5",
-    ["cw_m3super90"] = "M3 Super 90"
+    ["cw_ak74"] = {
+        ["name"] = "AK-74",
+        ["ammo_type"] = "5.45x39MM",
+        ["ammo_count"] = 60
+    },
+    ["cw_ar15"] = {
+        ["name"] = "AR15",
+        ["ammo_type"] = "5.56x45MM",
+        ["ammo_count"] = 60
+    },
+    ["cw_g4p_fn_fal"] = {
+        ["name"] = "FN FAL",
+        ["ammo_type"] = "7.62x51MM",
+        ["ammo_count"] = 60
+    },
+    ["cw_g4p_awm"] = {
+        ["name"] = "Arctic Warfare Magnum",
+        ["ammo_type"] = ".338 Lapua",
+        ["ammo_count"] = 10
+    },
+    ["cw_l115"] = {
+        ["name"] = "L115 Sniper",
+        ["ammo_type"] = ".338 Lapua",
+        ["ammo_count"] = 10
+    },
+    ["cw_m14"] = {
+        ["name"] = "M14",
+        ["ammo_type"] = "7.62x51MM",
+        ["ammo_count"] = 40
+    },
+    ["cw_m3super90"] = {
+        ["name"] = "M3 Super 90",
+        ["ammo_type"] = "12 Gauge",
+        ["ammo_count"] = 16
+    }
 }
+
+--List of keys in the primary weapons list
+pri_keys = {}
+local n = 0
+
+for k, v in pairs(pri_list) do
+    n = n + 1
+    pri_keys[n] = k
+end
 
 --LIST OF SECONDARY WEAPONS--
 sec_list = {
-    ["cw_deagle"] = "Desert Eagle",
-    ["cw_fiveseven"] = "FN Five-Seven",
-    ["cw_g4p_g2contender"] = "G2 Contender",
-    ["cw_m1911"] = "M1911",
-    ["cw_mac11"] = "MAC 11",
-    ["cw_mr96"] = "MR96",
-    --["cw_shorty"] 		= "Shorty",
-    ["cw_g4p_glock17"] = "Glock 17"
+    ["cw_deagle"] = {
+        ["name"] = "Desert Eagle",
+        ["ammo_type"] = ".50 AE",
+        ["ammo_count"] = 140
+    },
+    ["cw_fiveseven"] = {
+        ["name"] = "FN Five-Seven",
+        ["ammo_type"] = "5.7x28MM",
+        ["ammo_count"] = 400
+    },
+    ["cw_g4p_g2contender"] = {
+        ["name"] = "G2 Contender",
+        ["ammo_type"] = ".30 Winchester",
+        ["ammo_count"] = 20
+    },
+    ["cw_m1911"] = {
+        ["name"] = "M1911",
+        ["ammo_type"] = ".45 ACP",
+        ["ammo_count"] = 140
+    },
+    ["cw_mac11"] = {
+        ["name"] = "MAC 11",
+        ["ammo_type"] = "9x17MM",
+        ["ammo_count"] = 640
+    },
+    ["cw_mr96"] = {
+        ["name"] = "MR96",
+        ["ammo_type"] = ".44 Magnum",
+        ["ammo_count"] = 120
+    },
+    ["cw_g4p_glock17"] = {
+        ["name"] = "Glock 17",
+        ["ammo_type"] = "9x19MM",
+        ["ammo_count"] = 240
+    }
 }
+
+--List of keys in the secondary weapons list
+sec_keys = {}
+n = 0
+
+for k, v in pairs(sec_list) do
+    n = n + 1
+    sec_keys[n] = k
+end
 
 --LIST OF SPECIAL WEAPONS--
 spe_list = {
-    ["item_battery"] = "Armor",
-    ["cw_flash_grenade"] = "Flash Grenade",
-    ["cw_frag_grenade"] = "Frag Grenade",
-    ["cw_smoke_grenade"] = "Smoke Grenade",
-    ["m9k_nerve_gas"] = "Nerve Gas",
-    ["weapon_crowbar"] = "High Tech Lever-Action Melee Device",
-    ["m9k_harpoon"] = "Harpoon",
-    ["m9k_damascus"] = "Sword"
+    ["item_battery"] = {
+        ["name"] = "Armor",
+        ["ammo_type"] = "AR2",
+        ["ammo_count"] = 0
+    },
+    ["cw_flash_grenade"] = {
+        ["name"] = "Flash Grenade",
+        ["ammo_type"] = "Flash Grenades",
+        ["ammo_count"] = 1
+    },
+    ["cw_frag_grenade"] = {
+        ["name"] = "Frag Grenade",
+        ["ammo_type"] = "Frag Grenades",
+        ["ammo_count"] = 1
+    },
+    ["cw_smoke_grenade"] = {
+        ["name"] = "Smoke Grenade",
+        ["ammo_type"] = "Smoke Grenades",
+        ["ammo_count"] = 1
+    },
+    ["m9k_nerve_gas"] = {
+        ["name"] = "Nerve Gas",
+        ["ammo_type"] = "AR2",
+        ["ammo_count"] = 0
+    },
+    ["weapon_crowbar"] = {
+        ["name"] = "High Tech Lever-Action Melee Device",
+        ["ammo_type"] = "AR2",
+        ["ammo_count"] = 0
+    },
+    ["m9k_harpoon"] = {
+        ["name"] = "Harpoon",
+        ["ammo_type"] = "AR2",
+        ["ammo_count"] = 0
+    },
+    ["m9k_damascus"] = {
+        ["name"] = "Sword",
+        ["ammo_type"] = "AR2",
+        ["ammo_count"] = 0
+    }
 }
 
+--List of keys in the special weapons list
+spe_keys = {}
+n = 0
+
+for k, v in pairs(spe_list) do
+    n = n + 1
+    spe_keys[n] = k
+end
+
 --List of Names -> Classes--
-lookup = {}
+wep_lookup = {}
 
 for k, v in pairs(pri_list) do
-    lookup[v] = k
+    wep_lookup[v["name"]] = k
 end
 
 for k, v in pairs(sec_list) do
-    lookup[v] = k
+    wep_lookup[v["name"]] = k
 end
 
 for k, v in pairs(spe_list) do
-    lookup[v] = k
+    wep_lookup[v["name"]] = k
 end
-
---List of ammo to give each player when spawning--
-ammo_spawn_list = {
-    --Primary Ammo--
-    ["5.45x39MM"] = 60, --AK, 2 Reloads
-    ["5.56x45MM"] = 60, --AR, 2 Reloads
-    [".338 Lapua"] = 10, --AWM, L115, 2 Reloads
-    ["7.62x51MM"] = 60, --FAL, 2 Reloads, M14, 3 Reloads
-    ["12 Gauge"] = 16, --M3, 2 Reloads
-    --Secondary Ammo--
-    [".50 AE"] = 140, --Deagle, 20 Reloads
-    ["5.7x28MM"] = 400, --Five-Seven, 20 Reloads
-    [".30 Winchester"] = 20, --Contender, 20 Shots
-    ["9x19MM"] = 240, --Glock, 20 Reloads
-    [".44 Magnum"] = 120, --MR96, 20 Reloads
-    ["9x17MM"] = 640, --MAC11, 20 Reloads
-    [".45 ACP"] = 140, --M1911, 20 Reloads
-    --Special Ammo--
-    ["Flash Grenades"] = 0, --0 xtra Flash Grenades
-    ["Frag Grenades"] = 0, --0 xtra Frag Grenades
-    ["Smoke Grenades"] = 0 --0 xtra Smoke Grenades
-}
 
 --List of Manually Added Models
 --These models are displayed on the client's weapon selection menu.

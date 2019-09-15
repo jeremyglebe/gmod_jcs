@@ -62,8 +62,8 @@ function GM:PlayerInitialSpawn(ply)
 
     --give the player a starting loadout
     ply.itemlist = {
-        [1] = "weapon_ar2",
-        [2] = "weapon_pistol"
+        [1] = pri_keys[1],
+        [2] = sec_keys[1]
     }
 end
 

@@ -32,11 +32,11 @@ function jcs_items()
 
     --Add all primaries
     for k, v in pairs(pri_list) do
-        PrimaryMenu:AddChoice(v)
+        PrimaryMenu:AddChoice(v["name"])
     end
 
     PrimaryMenu.OnSelect = function(panel, index, value)
-        primary = lookup[value]
+        primary = wep_lookup[value]
 
         --If we can access the weapons table, show its model & Print Name--
         if weapons.Get(primary) then
@@ -64,11 +64,11 @@ function jcs_items()
 
     --Add all secondaries
     for k, v in pairs(sec_list) do
-        SecondaryMenu:AddChoice(v)
+        SecondaryMenu:AddChoice(v["name"])
     end
 
     SecondaryMenu.OnSelect = function(panel, index, value)
-        secondary = lookup[value]
+        secondary = wep_lookup[value]
 
         --If we can access the weapons table, show its model & Print Name--
         if weapons.Get(secondary) then
@@ -94,13 +94,13 @@ function jcs_items()
     SpecialMenu:SetSize((200 / 1920) * ScrW(), (20 / 1080) * ScrH())
     SpecialMenu:SetPos((825 / 1920) * ScrW(), (525 / 1080) * ScrH())
 
-    --Add all secondaries
+    --Add all specials
     for k, v in pairs(spe_list) do
-        SpecialMenu:AddChoice(v)
+        SpecialMenu:AddChoice(v["name"])
     end
 
     SpecialMenu.OnSelect = function(panel, index, value)
-        special = lookup[value]
+        special = wep_lookup[value]
 
         --If we can access the weapons table, show its model--
         if weapons.Get(special) then
@@ -130,3 +130,4 @@ function jcs_items()
 end
 
 concommand.Add("jcs_items", jcs_items)
+hook.Add("ShowSpare1", "hook_jcs_items", jcs_items)
