@@ -17,6 +17,7 @@
         (include these files at the bottom)
         lists.lua
         logic_control.lua
+        customize.lua
 --]]
 GM.Name = "Jay Combat Simulator"
 GM.Author = "whitejay2010"
@@ -35,3 +36,5 @@ end
 include("lists.lua")
 --used for calls to the game timer
 include("logic_control.lua")
+--file that adds custom items to the game
+include("customize.lua")

@@ -30,6 +30,7 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("lists.lua")
 AddCSLuaFile("logic_control.lua")
+AddCSLuaFile("customize.lua")
 AddCSLuaFile("cl_loadout.lua")
 --shared.lua has many purposes but notably creates global vars representing the
 --convar server settings.
