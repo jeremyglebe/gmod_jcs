@@ -16,6 +16,7 @@
     Files Provided:
         (include these files at the bottom)
         lists.lua
+        player_class/fighter.lua
         logic_control.lua
         customize.lua
 --]]
@@ -34,6 +35,8 @@ end
 
 --lists of item selections and misc for loadout management
 include("lists.lua")
+--defines the player class
+include("player_class/fighter.lua")
 --used for calls to the game timer
 include("logic_control.lua")
 --file that adds custom items to the game

@@ -1,3 +1,5 @@
+print("I've been included. Weeeeeeee!")
+
 DEFINE_BASECLASS("player_default")
 local PLAYER = {}
 --

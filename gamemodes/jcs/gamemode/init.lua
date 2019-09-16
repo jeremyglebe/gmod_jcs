@@ -18,9 +18,9 @@
         logic_control.lua
             SetGameTime()
             GetGameTime()
+        player_class/fighter.lua
     Files Provided:
         (include these files at the bottom)
-        player_class/fighter.lua
         loadout.lua
         timers.lua
 --]]
@@ -29,12 +29,13 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("lists.lua")
+AddCSLuaFile("player_class/fighter.lua")
 AddCSLuaFile("logic_control.lua")
 AddCSLuaFile("customize.lua")
 AddCSLuaFile("cl_loadout.lua")
 --shared.lua has many purposes but notably creates global vars representing the
 --convar server settings.
---shared.lua provides: lists.lua, logic_control.lua
+--shared.lua provides: lists.lua, logic_control.lua, player_class/fighter.lua
 include("shared.lua")
 
 --[[PlayerConnect (Override)
@@ -98,8 +99,6 @@ end
 
 --add a hook for the creation of the logic entity
 hook.Add("InitPostEntity", "Hook_InitLogicEnt", InitLogicEnt)
---defines the player class
-include("player_class/fighter.lua")
 --loadout functions and commands
 include("loadout.lua")
 --initializes game timer and handles round control
