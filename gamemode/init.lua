@@ -67,6 +67,25 @@ function GM:PlayerInitialSpawn(ply)
         [1] = pri_keys[1],
         [2] = sec_keys[1]
     }
+
+    --Kill the player without affecting their points, so that they have time
+    -- to setup their loadout
+	timer.Simple(1,
+        function()
+            ply:Kill()
+            ply:AddDeaths( -1 )
+            ply:AddFrags( 1 )
+            ply:PrintMessage( HUD_PRINTTALK, "You have "..(45).." seconds to prepare loadout! (F4)")           
+        end
+    )
+    --Do the ACTUAL first time spawn for the player after a few seconds pass
+	timer.Simple(45,
+        function()
+            ply:Spawn()
+        end
+    )
+	
+
 end
 
 --[[PlayerAuthed (Override)

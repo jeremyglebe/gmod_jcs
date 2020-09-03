@@ -130,4 +130,3 @@ function jcs_items()
 end
 
 concommand.Add("jcs_items", jcs_items)
-hook.Add("ShowSpare1", "hook_jcs_items", jcs_items)

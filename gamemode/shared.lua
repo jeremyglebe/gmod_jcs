@@ -41,3 +41,10 @@ include("player_class/fighter.lua")
 include("logic_control.lua")
 --file that adds custom items to the game
 include("customize.lua")
+
+--Enable pressing the spare button to open loadout menu
+hook.Add("ShowSpare1", "hook_jcs_items",
+    function()
+        RunConsoleCommand("jcs_items")
+    end
+)
