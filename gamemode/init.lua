@@ -1,46 +1,35 @@
---[[
-    init.lua
-
-    Desc: This file handles the initialization of the gamemode for the server.
+--[[init.lua
+    This file handles the initialization of the gamemode for the server.
     It sends files to the client and includes files the server will need to
     function. Some server functionality is found in shared.lua because it is
     also needed by the client.
-
-    [Files Included] The files included for use in this file are listed below
-    as either "depended upon" (needed for functions in this file) or "provided"
-    (adds simply executed from this file.) Note: Both sets are still, in fact,
-    provided by this file when this files is imported elsewhere. This naming
-    is only for organizational purposes.
-    Files Depended Upon:
-        (include these files at the top or in a previous file)
-        shared.lua
-            GAME_LENGTH
-        logic_control.lua
-            SetGameTime()
-            GetGameTime()
-        player_class/fighter.lua
-    Files Provided:
-        (include these files at the bottom)
-        loadout.lua
-        timers.lua
 --]]
---Send these files to the clients
---Make sure they have them!
-AddCSLuaFile("cl_init.lua")
-AddCSLuaFile("shared.lua")
-AddCSLuaFile("lists.lua")
-AddCSLuaFile("player_class/fighter.lua")
-AddCSLuaFile("logic_control.lua")
-AddCSLuaFile("customize.lua")
-AddCSLuaFile("cl_loadout.lua")
+
+--Setup client files to be sent to connecting clients
+include("server/send_files.lua")
+-- --Define which files should be sent to the client
+-- AddCSLuaFile("cl_init.lua")
+-- AddCSLuaFile("client/cl_loadout.lua")
+-- AddCSLuaFile("client/cl_loadout_ui.lua")
+-- --Shared files (which also need to be sent to client)
+-- AddCSLuaFile("shared.lua")
+-- AddCSLuaFile("lists.lua")
+-- AddCSLuaFile("player_class/fighter.lua")
+-- AddCSLuaFile("logic_control.lua")
+-- AddCSLuaFile("customize.lua")
+setupClientFiles()
+
 --shared.lua has many purposes but notably creates global vars representing the
---convar server settings.
---shared.lua provides: lists.lua, logic_control.lua, player_class/fighter.lua
+-- convar server settings, defines weapon lists, creates the logic entity, and
+-- defines the players' class
 include("shared.lua")
 
+--Other globals
+GAME_OVER = false
+
 --[[PlayerConnect (Override)
+    Handles player joins and announces their presence to the server.
     Hook: Function executes when a player joins the game
-    Desc: Handles player joins and announces their presence to the server.
     Params:
         (name) string, name of the player
         (ip) string, ip of the connection
@@ -52,8 +41,8 @@ function GM:PlayerConnect(name, ip)
 end
 
 --[[PlayerInitialSpawn (Override)
+    Handles first player spawn. Gives the player class and weapons.
     Hook: Function executes when a player spawns for the first time
-    Desc: Handles first player spawn. Gives the player class and weapons.
     Params:
         (ply) Player, the player object which is spawning in
     Returns: None
@@ -75,22 +64,17 @@ function GM:PlayerInitialSpawn(ply)
             ply:Kill()
             ply:AddDeaths( -1 )
             ply:AddFrags( 1 )
-            ply:PrintMessage( HUD_PRINTTALK, "You have "..(45).." seconds to prepare loadout! (F4)")           
+            ply:PrintMessage( HUD_PRINTTALK, "Prepare your loadout, then click to spawn!")
+            umsg.Start("open_loadout_menu", ply)
+            umsg.End()           
         end
     )
-    --Do the ACTUAL first time spawn for the player after a few seconds pass
-	timer.Simple(45,
-        function()
-            ply:Spawn()
-        end
-    )
-	
 
 end
 
 --[[PlayerAuthed (Override)
+    Prints the name of the authenticated player
     Hook: Function executes when a player is authenticated
-    Desc: prints the name of the authenticated player
     Params:
         (ply) Player, the player object of the authenticated player
         (steamID) string, steam id of the player
@@ -102,8 +86,8 @@ function GM:PlayerAuthed(ply, steamID, uniqueID)
 end
 
 --[[InitLogicEnt
+    Creates and initializes the game logic entity
     Hook: InitPostEntity, executes at start, after entities can be spawned
-    Desc: Creates and initializes the game logic entity
     Params: None
     Returns: None
 --]]

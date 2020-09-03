@@ -24,4 +24,3 @@ function jcs_set_items(ply, cmd, args)
 end
 
 concommand.Add("jcs_set_items", jcs_set_items)
---CONSOLE COMMAND TO CHOOSE LOADOUT--

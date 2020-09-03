@@ -1,4 +1,5 @@
-function jcs_items()
+---Creates the loadout menu UI
+function createLoadoutUI()
     local primary = ""
     local secondary = ""
     local special = ""
@@ -128,5 +129,3 @@ function jcs_items()
         Frame:Close()
     end
 end
-
-concommand.Add("jcs_items", jcs_items)
